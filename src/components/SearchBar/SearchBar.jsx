@@ -8,6 +8,7 @@ class SearchBar extends Component {
   };
   onFormSubmit = (e) => {
     e.preventDefault();
+    this.props.onSearch(this.state.searchVal);
     //logic for search in API
   };
   render() {
