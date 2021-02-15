@@ -4,7 +4,13 @@ import VideoCard from "../VideoCard/VideoCard";
 class VideoList extends Component {
   render() {
     const renderedVidoes = this.props.videos.map((video) => {
-      return <VideoCard key={video.id.videoId} video={video} />;
+      return (
+        <VideoCard
+          key={video.id.videoId}
+          video={video}
+          onVideoSelect={this.props.onVideoSelect}
+        />
+      );
     });
     return <div className="ui divided relaxed list">{renderedVidoes}</div>;
   }

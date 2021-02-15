@@ -3,13 +3,16 @@ import "./VideoCard.css";
 
 class VideoCard extends Component {
   render() {
-    const { video } = this.props;
+    const { video, onVideoSelect } = this.props;
     return (
-      <div className="item video-card">
-        <img src={video.snippet.thumbnails.high.url} className="ui image" />
+      <div className="item video-card" onClick={() => onVideoSelect(video)}>
+        <img
+          alt={video.snippet.title}
+          src={video.snippet.thumbnails.high.url}
+          className="ui image"
+        />
         <div className="content">
           <div className="header">{video.snippet.title}</div>
-          <div className="description">{video.snippet.description}</div>
         </div>
       </div>
     );
