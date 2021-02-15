@@ -1,16 +1,24 @@
 import React, { Component } from "react";
 import SearchBar from "./components/SearchBar/SearchBar";
+import VideoList from "./components/VideoList/VideoList";
+import youtube from "./apis/youtube";
 import "semantic-ui-css/semantic.min.css";
 
 class App extends Component {
-  state = {};
-  onYoutubeSearch = (query) => {
-    console.log(query);
+  state = { videos: [] };
+  onYoutubeSearch = async (query) => {
+    const res = await youtube.get("/search", {
+      params: {
+        q: query,
+      },
+    });
+    this.setState({ videos: res.data.items });
   };
   render() {
     return (
       <div className="ui container">
         <SearchBar onSearch={this.onYoutubeSearch} />
+        <VideoList videos={this.state.videos} />
       </div>
     );
   }
